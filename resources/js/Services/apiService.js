@@ -78,3 +78,16 @@ export const removeCarModel = async (id) => {
         throw new Error("Failed to delete car model.");
     }
 };
+
+const fetchEcus = async () => {
+    try {
+        const response = await fetch("/ecus"); // Use the correct API endpoint
+        if (!response.ok) {
+            throw new Error("Failed to fetch ECUs");
+        }
+        const data = await response.json();
+        setEcus(data);
+    } catch (error) {
+        console.error("Error fetching ECUs:", error);
+    }
+};

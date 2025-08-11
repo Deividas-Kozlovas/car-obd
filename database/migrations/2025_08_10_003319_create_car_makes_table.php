@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('car_makes');
+        Schema::dropIfExists('car_makes'); // FIX: was dropping 'ecus'
     }
 };

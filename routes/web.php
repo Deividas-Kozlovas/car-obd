@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\CarMakeController;
 use App\Http\Controllers\CarModelController;
+use App\Http\Controllers\ECUController;
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -27,6 +29,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('car-makes', CarMakeController::class)->only(['index', 'store', 'destroy']);
-Route::resource('car-models', CarModelController::class)->only(['index', 'store', 'destroy']);;
+Route::resource('car-models', CarModelController::class)->only(['index', 'store', 'destroy']);
+Route::get('ecus/{ecu}/download', [ECUController::class, 'download'])->name('ecus.download');
+Route::resource('ecus', ECUController::class)->only(['index', 'store', 'destroy']);
+
 
 require __DIR__.'/auth.php';

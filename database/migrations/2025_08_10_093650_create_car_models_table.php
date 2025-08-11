@@ -10,25 +10,14 @@ return new class extends Migration
     {
         Schema::create('car_models', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('car_make_id')->constrained('car_makes')->cascadeOnDelete(); // Define foreign key once
-            $table->string('name'); // Define the name column
+            $table->foreignId('car_make_id')->constrained('car_makes')->cascadeOnDelete();
+            $table->string('name');
             $table->timestamps();
-        });
-
-        Schema::table('ecus', function (Blueprint $table) {
-            $table->foreignId('car_model_id')
-                  ->nullable()
-                  ->constrained('car_models')
-                  ->cascadeOnDelete();
         });
     }
 
     public function down(): void
     {
-        Schema::table('ecus', function (Blueprint $table) {
-            $table->dropConstrainedForeignId('car_model_id');
-        });
-
         Schema::dropIfExists('car_models');
     }
 };

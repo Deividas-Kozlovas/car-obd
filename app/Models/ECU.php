@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ECU extends Model
 {
+    use HasFactory;
+
     protected $table = 'ecus';
 
     protected $fillable = [
-        'make',
-        'model',
+        'car_make_id',
+        'car_model_id',
         'engine',
         'gearbox',
         'power',
@@ -25,8 +28,6 @@ class ECU extends Model
         'payment_method',
         'original_extension',
         'compressed_extension',
-        'car_make_id',
-        'car_model_id', // Add this to the fillable array
     ];
 
     public $timestamps = true;
